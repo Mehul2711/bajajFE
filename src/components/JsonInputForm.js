@@ -2,25 +2,25 @@ import React, { useState } from "react";
 
 const JsonInputForm = ({ setResponse, setDropdownOptions }) => {
   // Declare all necessary state variables
-  const [jsonInput, setJsonInput] = useState(""); // To hold the input JSON
-  const [error, setError] = useState(""); // To handle error messages
-  const [isValidJson, setIsValidJson] = useState(false); // To check JSON validity
+  const [jsonInput, setJsonInput] = useState(""); 
+  const [error, setError] = useState(""); 
+  const [isValidJson, setIsValidJson] = useState(false); 
 
-  // Handle form submission
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
-      const trimmedJsonInput = jsonInput.trim(); // Trim the input
+      const trimmedJsonInput = jsonInput.trim(); 
       console.log("Trimmed JSON input:", trimmedJsonInput);
 
-      // Validate and parse JSON
-      const parsedJson = JSON.parse(trimmedJsonInput); // Log parsed JSON
+      
+      const parsedJson = JSON.parse(trimmedJsonInput); 
       console.log("Parsed JSON:", parsedJson);
 
       setIsValidJson(true);
 
-      // Call backend API
+     
       const res = await fetch("https://bajajbe-7pcf.onrender.com/bfhl", {
         method: "POST",
         headers: {
@@ -46,7 +46,7 @@ const JsonInputForm = ({ setResponse, setDropdownOptions }) => {
           value={jsonInput}
           onChange={(e) => {
             setJsonInput(e.target.value);
-            console.log("Text area value:", e.target.value); // Log the current input
+            console.log("Text area value:", e.target.value); 
           }}
           placeholder="Enter JSON here"
         />
