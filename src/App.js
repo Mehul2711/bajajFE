@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import JsonInputForm from "./components/JsonInputForm";
 
-function App() {
+const App = () => {
+  const [response, setResponse] = useState(null);
+  const [dropdownOptions, setDropdownOptions] = useState([]);
+
+  // Set roll number as title
+  useEffect(() => {
+    document.title = "Your Roll Number"; // Replace with actual roll number
+  }, []);
+
+  const filterResponse = () => {
+    if (!response) return null;
+
+    let filteredResponse = {};
+    if (dropdownOptions.includes("alphabets")) {
+      filteredResponse.alphabets = response.alphabets;
+    }
+    if (dropdownOptions.includes("numbers")) {
+      filteredResponse.numbers = response.numbers;
+    }
+    if (dropdownOptions.includes("highest-lowercase")) {
+      filteredResponse["highest-lowercase"] = response["highest-lowercase"];
+    }
+    return filteredResponse;
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>JSON Processor</h1>
+      <JsonInputForm
+        setResponse={setResponse}
+        setDropdownOptions={setDropdownOptions}
+      />
+      {response && <pre>{JSON.stringify(filterResponse(), null, 2)}</pre>}
     </div>
   );
-}
+};
 
 export default App;
