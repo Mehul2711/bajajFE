@@ -21,7 +21,7 @@ const JsonInputForm = ({ setResponse, setDropdownOptions }) => {
       setIsValidJson(true);
 
       // Call backend API
-      const res = await fetch("http://localhost:5001/bfhl", {
+      const res = await fetch("https://bajajbe-7pcf.onrender.com/bfhl", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
