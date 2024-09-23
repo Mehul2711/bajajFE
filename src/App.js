@@ -5,9 +5,8 @@ const App = () => {
   const [response, setResponse] = useState(null);
   const [dropdownOptions, setDropdownOptions] = useState([]);
 
- 
   useEffect(() => {
-    document.title = "RA2111033010155"; 
+    document.title = "RA2111033010155";
   }, []);
 
   const filterResponse = () => {
@@ -27,13 +26,23 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Bajaj Task by RA2111033010155</h1>
-      <JsonInputForm
-        setResponse={setResponse}
-        setDropdownOptions={setDropdownOptions}
-      />
-      {response && <pre>{JSON.stringify(filterResponse(), null, 2)}</pre>}
+    <div className="min-h-screen bg-gradient-to-br from-blue-200 via-white to-blue-50 flex flex-col items-center p-8">
+      <h1 className="text-3xl font-bold text-blue-600 mb-8">
+        Bajaj Task by RA2111033010155
+      </h1>
+
+      <div className="w-full max-w-3xl">
+        <JsonInputForm
+          setResponse={setResponse}
+          setDropdownOptions={setDropdownOptions}
+        />
+      </div>
+
+      {response && (
+        <pre className="mt-8 bg-gray-100 p-4 rounded-lg shadow-lg text-left text-sm text-gray-800 w-full max-w-3xl">
+          {JSON.stringify(filterResponse(), null, 2)}
+        </pre>
+      )}
     </div>
   );
 };
